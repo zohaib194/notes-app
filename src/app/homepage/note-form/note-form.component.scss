@@ -28,14 +28,22 @@
         width: 12rem;
         height: 13rem;
         border: 2px solid black;
-        padding: 10px;
         border-radius: 3px 50px;
         margin: 0.5rem;
-        &-close {
-            padding: 5px;
-            line-height: 14px;
-            min-width: auto;
-            background: cadetblue;
+        padding: 0 0 2.5rem 0;
+        &-toolbar {
+            border-radius: 0px 49px 0px 0px;
+            border: 2px black;
+            height: 3rem;
+            border-style: none none solid none;
+            &-close {
+                padding: 5px;
+                line-height: 14px;
+                min-width: auto;
+                background: cadetblue;
+                height: 2rem;
+                margin: 8px;
+            }
         }
         &-data {
             width: 11rem;

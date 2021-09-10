@@ -7,9 +7,11 @@
         </div>
      </form>
     <div class="note-container {{note.color}}" *ngFor="let note of this.notesData.notes">
-        <button class="note-container-close" (click)="removeNote(note)">
-            X
-        </button>
+        <div class="note-container-toolbar">
+            <button class="note-container-toolbar-close" (click)="removeNote(note)">
+                X
+            </button>
+        </div>
         <p class="note-container-data {{note.textColor}}">{{note.data}}</p>
     </div>
 </div>
