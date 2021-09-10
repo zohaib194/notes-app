@@ -1,5 +1,5 @@
 <div>
-    <form class="note-form" [formGroup]="noteForm" (ngSubmit)="addNote()" >
+    <form class="note-form" [formGroup]="noteForm">
         <textarea class="note-form-textArea" type="text" required formControlName="noteText" placeholder="Note Text"> </textarea>
         <div class="note-form-error" *ngIf="noteText?.invalid || noteText?.dirty">
             {{noteText?.errors?.message}}

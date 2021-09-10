@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, EventEmitter, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { Note } from 'src/app/state/store/models/note.model';
@@ -11,14 +11,25 @@ import { getColorData } from 'src/app/state/store/selectors/color.selector';
   templateUrl: './note-form.component.html',
   styleUrls: ['./note-form.component.scss']
 })
-export class NoteFormComponent implements OnInit {
-  notesData: any;
+export default class NoteFormComponent implements OnInit, OnChanges{
+  @Input()
+  saveNote: boolean;
 
+  @Output()
+  public noteSaved: EventEmitter<any> = new EventEmitter();
+
+  notesData: any;
   noteForm: FormGroup;
   selectedColor: string;
 
   constructor(private store: Store<any>,
               private changeDetector: ChangeDetectorRef) { }
+  
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes && changes.saveNote && changes.saveNote.currentValue === true) {
+      this.addNote()
+    }
+  }
 
   ngOnInit(): void {
     this.noteForm = new FormGroup({
@@ -56,6 +67,9 @@ export class NoteFormComponent implements OnInit {
       return;
     }
 
+    setTimeout(() => {
+      this.noteSaved.emit();
+    }, 1000);
     this.noteForm.reset();
     this.store.dispatch(new CreateNote(note));
   }

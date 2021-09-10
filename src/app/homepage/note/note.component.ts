@@ -7,12 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NoteComponent implements OnInit {
 
+  saveNote: boolean = false;
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onSaveNoteCliked(): void {
-  
+  toggleSaveNoteButton(): void {
+    this.saveNote = !this.saveNote;
   }
 }

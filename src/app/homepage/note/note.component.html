@@ -1,3 +1,3 @@
 <app-header [showColors]=true></app-header>
-<app-note-form></app-note-form>
-<app-footer (onSaveNote)="onSaveNoteCliked()"></app-footer>
+<app-note-form [saveNote]="saveNote" (noteSaved)="toggleSaveNoteButton()"></app-note-form>
+<app-footer (onSaveNote)="toggleSaveNoteButton()"></app-footer>
