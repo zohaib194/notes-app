@@ -20,5 +20,21 @@
             text-transform: capitalize;
             color: white;
         }
+        &-colors {
+            margin-left: auto;
+            
+            &-title {
+                 font-size: 18px;
+                font-family: 'Montserrat', sans-serif;
+                margin: 0;
+                text-transform: capitalize;
+                color: white;
+            }
+            &-select {
+                width: 83px;
+                height: 27px;
+                background: antiquewhite;
+            }
+        }
     }
 }

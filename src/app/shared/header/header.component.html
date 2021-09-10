@@ -2,9 +2,9 @@
     <div class="header-content">
         <img class="header-content-notesImg" src="https://w7.pngwing.com/pngs/445/413/png-transparent-tomboy-note-taking-essay-information-writing-sticky-notes-miscellaneous-angle-essay.png"/>
         <h5 class="header-content-title">Notes</h5>
-        <div *ngIf="showColors">
-            <label>Colors: </label>
-            <select (change)="onColorChange($event)">
+        <div class="header-content-colors" *ngIf="showColors">
+            <label class="header-content-colors-title">Colors: </label>
+            <select class="header-content-colors-select" (change)="onColorChange($event)">
                 <option *ngFor="let color of colors" value={{color}}>
                     {{color}}
                 </option>

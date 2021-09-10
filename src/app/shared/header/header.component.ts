@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit {
   @Input()
   showColors: boolean;
 
-  colors: string[] = ['Yellow', 'Blue', 'Green'];
+  colors: string[] = ['Yellow', 'Blue', 'Green', 'Red'];
 
   constructor(public store: Store<ColorState>) { }
 

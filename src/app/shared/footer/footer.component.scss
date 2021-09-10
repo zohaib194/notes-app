@@ -7,4 +7,14 @@
     left: 0;
     bottom: 0;
     width: 100%;
+    flex: 1;
+    display: flex;
+    &-button {
+        width: 6rem;
+        height: 3rem;
+        margin: 0.5rem 0.5rem 0.5rem auto;
+        border-end-start-radius: 1rem;
+        border-top-right-radius: 1rem;
+        background: cadetblue;
+    }
 }

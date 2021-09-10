@@ -44,7 +44,8 @@ export class NoteFormComponent implements OnInit {
     const note: Note = {
       id: (this.notesData && this.notesData.notes) ? this.notesData.notes?.length + 1 : 1,
       data: this.noteText?.value,
-      color: this.selectedColor
+      color: this.selectedColor,
+      textColor: (this.selectedColor == "Yellow") ? "Black" : "White"
     };
 
     if (note.data === null || note.data === "") {

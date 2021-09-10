@@ -6,7 +6,6 @@ import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomepageModule } from './homepage/homepage.module';
-import { SharedModule } from './shared/shared.module';
 import { appReducers } from './state/store/reducers/app.reducer';
 
 @NgModule({
@@ -16,7 +15,6 @@ import { appReducers } from './state/store/reducers/app.reducer';
   imports: [
     BrowserModule,
     HomepageModule,
-    SharedModule,
     AppRoutingModule,
     StoreModule.forRoot(appReducers),
   ],
