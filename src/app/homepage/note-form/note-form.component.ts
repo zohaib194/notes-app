@@ -15,13 +15,16 @@ export class NoteFormComponent implements OnInit {
 
   noteForm: FormGroup;
 
+  colors: string[] = ['Yellow', 'Blue', 'Green'];
+  selectedColor: string = 'Yellow';
+
   constructor(private store: Store<{ notes: Note[] }>,
               private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.noteForm = new FormGroup({
       noteText: new FormControl("", Validators.required)
-   });
+    });
 
     this.store.select(getNotes).subscribe(data => {
       if(data) {
@@ -37,7 +40,7 @@ export class NoteFormComponent implements OnInit {
       data: this.noteText?.value
     };
 
-    if(note.data === "") {
+    if (note.data === "") {
       return;
     }
 
@@ -47,6 +50,11 @@ export class NoteFormComponent implements OnInit {
 
   removeNote(note: Note): void {
     this.store.dispatch(new DeleteNote(note));
+  }
+  
+  onColorChange(event: any): void {
+    console.log(event.target.value);
+    this.selectedColor = event.target.value;
   }
 
   get noteText() {

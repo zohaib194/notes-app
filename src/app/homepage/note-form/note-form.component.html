@@ -8,6 +8,12 @@
                 Note text is required
             </div>
         </div>
+        <label>Colors: </label>
+        <select (change)="onColorChange($event)">
+            <option *ngFor="let color of colors" value={{color}}>
+                {{color}}
+            </option>
+        </select>
 
         <input class="note-form-button" type="submit" value="Save Note">
      </form>
