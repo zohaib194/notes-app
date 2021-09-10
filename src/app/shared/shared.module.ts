@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { colorReducer } from '../state/store/reducers/color.reducer';
+import { StoreModule } from '@ngrx/store';
 
 
 
@@ -11,7 +13,8 @@ import { FooterComponent } from './footer/footer.component';
     FooterComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    StoreModule.forFeature('colors', colorReducer)
   ],
   exports: [
     HeaderComponent,

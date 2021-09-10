@@ -1,9 +1,10 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Note } from 'src/app/state/models/note.models';
-import { getNotes } from 'src/app/state/selectors/note.selector';
-import { CreateNote, DeleteNote, NoteActionTypes } from 'src/app/state/store/actions/note.actions';
+import { Note } from 'src/app/state/store/models/note.model';
+import { getNotesData } from 'src/app/state/store/selectors/note.selector';
+import { CreateNote, DeleteNote } from 'src/app/state/store/actions/note.action';
+import { getColorData } from 'src/app/state/store/selectors/color.selector';
 
 @Component({
   selector: 'app-note-form',
@@ -14,11 +15,9 @@ export class NoteFormComponent implements OnInit {
   notesData: any;
 
   noteForm: FormGroup;
+  selectedColor: string;
 
-  colors: string[] = ['Yellow', 'Blue', 'Green'];
-  selectedColor: string = 'Yellow';
-
-  constructor(private store: Store<{ notes: Note[] }>,
+  constructor(private store: Store<any>,
               private changeDetector: ChangeDetectorRef) { }
 
   ngOnInit(): void {
@@ -26,21 +25,33 @@ export class NoteFormComponent implements OnInit {
       noteText: new FormControl("", Validators.required)
     });
 
-    this.store.select(getNotes).subscribe(data => {
-      if(data) {
+    this.store.select(getNotesData).subscribe(data => {
+      if (data) {
         this.notesData = data;
       }
       this.changeDetector.detectChanges();
-    })
+    });
+
+    this.store.select(getColorData).subscribe(data => {
+      if (data) {
+        this.selectedColor = data.color;
+      }
+      this.changeDetector.detectChanges();
+    });
   }
 
   addNote(): void {
     const note: Note = {
-      id: this.notesData.notes?.length + 1,
-      data: this.noteText?.value
+      id: (this.notesData && this.notesData.notes) ? this.notesData.notes?.length + 1 : 1,
+      data: this.noteText?.value,
+      color: this.selectedColor
     };
 
-    if (note.data === "") {
+    if (note.data === null || note.data === "") {
+      this.noteText?.setErrors({
+        invalid: true,
+        message: 'Note text is required!'
+      })
       return;
     }
 
@@ -50,11 +61,6 @@ export class NoteFormComponent implements OnInit {
 
   removeNote(note: Note): void {
     this.store.dispatch(new DeleteNote(note));
-  }
-  
-  onColorChange(event: any): void {
-    console.log(event.target.value);
-    this.selectedColor = event.target.value;
   }
 
   get noteText() {

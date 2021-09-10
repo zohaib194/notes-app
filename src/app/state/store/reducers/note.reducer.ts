@@ -1,5 +1,5 @@
-import { Note } from "../../models/note.models";
-import { NoteActions, NoteActionTypes } from "../actions/note.actions";
+import { Note } from "../models/note.model";
+import { NoteActions, NoteActionTypes } from "../actions/note.action";
 
 export interface NoteState {
     notes: Note[];

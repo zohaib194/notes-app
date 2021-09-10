@@ -16,6 +16,11 @@
             border-top-right-radius: 1rem;
             background: cadetblue;
         }
+        &-error {
+            margin: 0.5rem 0.5rem 0 0.5rem;
+            color: red;
+            font-size: 15px;
+        }
     }
     &-container{
         border-radius: 15px 50px;
@@ -46,4 +51,17 @@
             overflow: auto;
         }
     }
+}
+
+
+.Yellow {
+    background-color: yellow;
+}
+
+.Blue {
+    background-color: blue;
+}
+
+.Green {
+    background-color: green;
 }

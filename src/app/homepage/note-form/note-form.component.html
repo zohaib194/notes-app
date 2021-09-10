@@ -1,30 +1,15 @@
 <div>
     <form class="note-form" [formGroup]="noteForm" (ngSubmit)="addNote()" >
         <textarea class="note-form-textArea" type="text" required formControlName="noteText" placeholder="Note Text"> </textarea>
-        <div 
-            class="alert alert-danger"
-            *ngIf="noteText?.invalid && (noteText?.dirty || noteText?.touched)">
-            <div *ngIf="noteText?.errors?.required">
-                Note text is required
-            </div>
+        <div class="note-form-error" *ngIf="noteText?.invalid">
+            {{noteText?.errors?.message}}
         </div>
-        <label>Colors: </label>
-        <select (change)="onColorChange($event)">
-            <option *ngFor="let color of colors" value={{color}}>
-                {{color}}
-            </option>
-        </select>
-
         <input class="note-form-button" type="submit" value="Save Note">
      </form>
-
-</div>
-
-<div class="note-container" *ngFor="let note of notesData.notes">
-    <button 
-    class="note-container-close"
-    (click)="removeNote(note)">
-        X
-    </button>
-    <p class="note-container-data">{{note.data}}</p>
+    <div class="note-container {{note.color}}" *ngFor="let note of this.notesData.notes">
+        <button class="note-container-close" (click)="removeNote(note)">
+            X
+        </button>
+        <p class="note-container-data">{{note.data}}</p>
+    </div>
 </div>

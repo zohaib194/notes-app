@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { ColorActionTypes, SetColor } from 'src/app/state/store/actions/color.action';
+import { ColorState } from 'src/app/state/store/reducers/color.reducer';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +10,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  showColors: boolean;
+
+  colors: string[] = ['Yellow', 'Blue', 'Green'];
+
+  constructor(public store: Store<ColorState>) { }
 
   ngOnInit(): void {
+  }
+
+  onColorChange(event: any): void {
+    this.store.dispatch(new SetColor(event.target.value));
   }
 
 }
